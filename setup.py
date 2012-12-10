@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django_internal_urls",
-    version = "0.1.0",
+    version = "0.1.0-2",
     description = 'Add modular url callbacks',
     author = 'David Danier',
     author_email = 'david.danier@team23.de',
@@ -12,8 +12,8 @@ setup(
         'django_internal_urls',
         'django_internal_urls.templatetags',
     ],
-    requires = [
-        'django(>=1.4)',
+    install_requires = [
+        'Django >=1.3',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
