@@ -1,6 +1,6 @@
 from django.template.defaulttags import kwarg_re
 from django import template
-from django.conf import settings
+from django.utils.encoding import smart_str
 
 register = template.Library()
 
@@ -24,7 +24,7 @@ def parse_args(parser, bits):
                 kwargs[name] = parser.compile_filter(value)
             else:
                 args.append(parser.compile_filter(value))
-    
+
     return args, kwargs, asvar
 
 
@@ -32,9 +32,10 @@ class InternalUrlNode(template.Node):
     def __init__(self, module_name, args, kwargs, asvar):
         self.module_name = module_name
         self.args, self.kwargs, self.asvar = args, kwargs, asvar
-    
+
     def render(self, context):
         from .. import modules
+
         module_name = self.module_name.resolve(context)
         args = [arg.resolve(context) for arg in self.args]
         kwargs = dict([(smart_str(k, 'ascii'), v.resolve(context))

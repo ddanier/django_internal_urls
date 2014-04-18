@@ -1,5 +1,6 @@
 def resolve(module, args=None, kwargs=None):
     from . import modules
+
     if args is None:
         args = ()
     if kwargs is None:
